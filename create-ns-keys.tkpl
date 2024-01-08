@@ -1,0 +1,72 @@
+code: |-
+
+  ; Marmalade NG namespace Interface
+  (define-namespace "n_4e47017ea6449649e13d79906dd1697fb1fe1d7a" (read-keyset 'ns-I-ks) (read-keyset 'ns-I-ks))
+
+  ; Marmalade NG namespace Main
+  (define-namespace "n_4e470a97222514a8662dd1219000a0431451b0ee" (read-keyset 'ns-A-ks) (read-keyset 'ns-A-ks))
+
+  ; Marmalade NG namespace Extra Policies
+  (define-namespace "n_4e470ef3de0596d74595c92510f7e4de20e6bd0a" (read-keyset 'ns-E-ks) (read-keyset 'ns-E-ks))
+
+  ; Marmalade NG namespace Bridge
+  (define-namespace "n_4e470b4e150fafd1c50d1f016331142b55dd01db" (read-keyset 'ns-B-ks) (read-keyset 'ns-B-ks))
+
+  ; Marmalade-NG multi-sig init
+  (namespace "n_4e470a97222514a8662dd1219000a0431451b0ee")
+  (define-keyset "n_4e470a97222514a8662dd1219000a0431451b0ee.admin-multi-sig" (read-keyset 'ng-init-key))
+
+  ; Then rotate all namespaces to the keyset ref guard
+  (define-namespace "n_4e47017ea6449649e13d79906dd1697fb1fe1d7a" (keyset-ref-guard "n_4e470a97222514a8662dd1219000a0431451b0ee.admin-multi-sig") (keyset-ref-guard "n_4e470a97222514a8662dd1219000a0431451b0ee.admin-multi-sig"))
+  (define-namespace "n_4e470a97222514a8662dd1219000a0431451b0ee" (keyset-ref-guard "n_4e470a97222514a8662dd1219000a0431451b0ee.admin-multi-sig") (keyset-ref-guard "n_4e470a97222514a8662dd1219000a0431451b0ee.admin-multi-sig"))
+  (define-namespace "n_4e470ef3de0596d74595c92510f7e4de20e6bd0a" (keyset-ref-guard "n_4e470a97222514a8662dd1219000a0431451b0ee.admin-multi-sig") (keyset-ref-guard "n_4e470a97222514a8662dd1219000a0431451b0ee.admin-multi-sig"))
+  (define-namespace "n_4e470b4e150fafd1c50d1f016331142b55dd01db" (keyset-ref-guard "n_4e470a97222514a8662dd1219000a0431451b0ee.admin-multi-sig") (keyset-ref-guard "n_4e470a97222514a8662dd1219000a0431451b0ee.admin-multi-sig"))
+
+
+data:
+  ng-init-key:
+    pred: keys-all
+    keys:
+      - 4e70958bc74b248cfe373e41aaa7bd0ad72b9bf002dc7d6fa27ce2de215ccdd4
+
+  ns-I-ks:
+    pred: keys-any
+    keys:
+      - 009f73a48f93976c22cc77a6e4d02715e79d218ee6e02bc738d944047c55673a
+      - b84eaed388a5019757d97ed1caf5ce6e6415685603777a4688987820b425033a
+
+  ns-A-ks:
+    pred: keys-any
+    keys:
+      - 02dee3c5565a0fa4fd3e8b61fb29d661c2ed772366e05dc9c8d75dcba7e14525
+      - b84eaed388a5019757d97ed1caf5ce6e6415685603777a4688987820b425033a
+
+  ns-B-ks:
+    pred: keys-any
+    keys:
+      - 02dee3c5565a0fa4fd3e8b61fb29d661c2ed772366e05dc9c8d75dcbaa5f154c
+      - b84eaed388a5019757d97ed1caf5ce6e6415685603777a4688987820b425033a
+
+  ns-E-ks:
+    pred: keys-any
+    keys:
+      - 02dee3c5565a0fa4fd3e8b61fb29d661c2ed772366e05dc9c8d75dcba91f999a
+      - b84eaed388a5019757d97ed1caf5ce6e6415685603777a4688987820b425033a
+
+
+publicMeta:
+  chainId: "{{chain}}"
+  sender: util-lib-deployer-new
+  gasLimit: 1600
+  gasPrice: 0.00000001
+  ttl: 7200
+networkId: mainnet01
+
+signers:
+  - public: b84eaed388a5019757d97ed1caf5ce6e6415685603777a4688987820b425033a
+    caps: []
+  - public: ce0bc52493dd69b2325b56565b099865f7e6cb007523d27b5f166d21b1aaabe5
+    caps:
+      - name: "coin.GAS"
+        args: []
+type: exec
