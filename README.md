@@ -8,7 +8,7 @@ when new chains will be added to Kadena.
 
 ## How to
 
-1 - Decrypt the temporary jey
+1 - Decrypt the temporary key
 ```sh
 gpg -d tmp_key.key.gpg
 ```
